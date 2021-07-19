@@ -7,9 +7,10 @@
 | nickname           | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| honmyou            | string | null: false |
+| sirname            | string | null: false |
+| firstname          | string | null: false |
 | furigana           | string | null: false |
-| birthday           | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
 
@@ -66,15 +67,15 @@
 
 ## shipping テーブル
 
-| Column  | Type               | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| postalcode      | integer    | null: false                    |
-| prefecture      | string     | null: false                    |
-| city            | string     | null: false                    |
-| banchi          | string     | null: false                    |
-| building_name   | string     |                                | //空白OKにする
-| phone           | integer    | null: false                    |
-| order           | references | null: false, foreign_key: true |
+| Column  | Type               | Options                         |
+| ---------------- | ---------- | ------------------------------ |
+| postalcode       | integer    | null: false                    |
+| shipping_from_id | integer    | null: false                    | //Active Hashを使う
+| city             | string     | null: false                    |
+| banchi           | string     | null: false                    |
+| building_name    | string     |                                | //空白OKにする
+| phone            | integer    | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 
 ### Association
