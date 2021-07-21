@@ -9,18 +9,20 @@ class Item < ApplicationRecord
   belongs_to :shipping_from
   belongs_to :shipping_day
 
+  with_options presence: true do
+  validates :image
+  validates :name
+  validates :description
+  validates :price,                         inclusion: { in: 300..9_999_999 , message: "is out of setting range" }, format: { with: /\A[0-9]+\z/}
 
-  validates :image,                         presence: true
-  validates :name,                          presence: true
-  validates :description,                   presence: true
-  validates :price,                         presence: true, inclusion: { in: 300..9_999_999 , message: "is out of setting range" }, format: { with: /\A[0-9]+\z/}
+  end
 
-  #with_options presence: true do
-  validates :category_id,                   numericality: { other_than: 1 , message: "can't be blank"}
-  validates :condition_id,                  numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_payment_id,           numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_from_id,              numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_day_id,               numericality: { other_than: 1 , message: "can't be blank"}
-  #end
+  with_options numericality: { other_than: 1 , message: "can't be blank"} do
+  validates :category_id
+  validates :condition_id
+  validates :shipping_payment_id
+  validates :shipping_from_id
+  validates :shipping_day_id
+  end
   
 end
