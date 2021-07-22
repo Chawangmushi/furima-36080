@@ -116,7 +116,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'ユーザー情報がないと出品できない' do
-        @item.user = nil test
+        @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
       end
