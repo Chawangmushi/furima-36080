@@ -13,8 +13,8 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :price, inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
-                      format: { with: /\A[0-9]+\z/ }
+    validates :price,         inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
+                              numericality: {only_integer: true,  message: 'is invalid. Please input half-width numbers only' }
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do

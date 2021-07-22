@@ -76,7 +76,37 @@ RSpec.describe Item, type: :model do
       it '価格(price)が全角だと出品できない' do
         @item.price = '５００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
+      end
+
+      it '価格(price)が英字だと出品できない' do
+        @item.price = 'abcdz'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
+      end
+
+      it '価格(price)が英数字混合だと出品できない' do
+        @item.price = '300dollar'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
+      end
+
+      it '価格(price)が英数字混合だと出品できない' do
+        @item.price = 'dollar300'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
+      end
+
+      it '価格(price)が数字と半角記号だと出品できない' do
+        @item.price = '300-00'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
+      end
+
+      it '価格(price)が小数点があると出品できない' do
+        @item.price = '300.12'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Please input half-width numbers only')
       end
 
       it '画像(image)が空だと出品できない' do
