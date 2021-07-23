@@ -20,20 +20,19 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit
-    redirect_to action: :index if @item.user_id != current_user.id
+    user_check
   end
 
   def update
+    user_check
     @item.update(item_params)
-
     if @item.save
       redirect_to item_path
     else
-
       render :edit
     end
   end
@@ -48,5 +47,11 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def user_check
+    redirect_to action: :index if @item.user_id != current_user.id
+  end
+
+
 
 end
