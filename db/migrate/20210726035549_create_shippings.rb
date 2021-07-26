@@ -15,13 +15,3 @@ class CreateShippings < ActiveRecord::Migration[6.0]
     end
   end
 end
-
-| Column  | Type                | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| postalcode       | string     | null: false                    |
-| shipping_from_id | integer    | null: false                    | //Active Hashを使う
-| city             | string     | null: false                    |
-| banchi           | string     | null: false                    |
-| building_name    | string     |                                | //空白OKにする
-| phone            | string     | null: false                    |
-| order            | references | null: false, foreign_key: true |
