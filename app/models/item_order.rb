@@ -6,7 +6,7 @@ class ItemOrder
     validates :token, :city, :banchi
     validates :shipping_from_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :postalcode, format: { with: /\A\d{3}[-]\d{4}\z/ }
-    validates :phone, numericality: {message: "is invalid. Please input half-width numbers" }, length: {maximum:11}
+    validates :phone, numericality: {message: "is invalid. Please input half-width numbers" }, length: { in: 10..11 }
   end
 
     def save

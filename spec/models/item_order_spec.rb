@@ -12,6 +12,12 @@ RSpec.describe ItemOrder, type: :model do
       it '全ての項目が正しく入力されている場合' do
         expect(@item_order).to be_valid
       end
+
+      it '建物名は空白でも登録できる' do
+        @item_order.building_name = ''
+        expect(@item_order).to be_valid
+      end
+
     end
 
     context '購入ができない場合のテスト' do
@@ -69,6 +75,18 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Phone is invalid. Please input half-width numbers")
       end
 
+      it '電話番号がハイフン有りと購入できない' do
+        @item_order.phone = '01234-5678'
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Phone is invalid. Please input half-width numbers")
+      end
+
+      it '電話番号が9桁以下だと購入できない' do
+        @item_order.phone = '123456789'
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Phone is too short (minimum is 10 characters)")
+      end
+
       it '電話番号が12桁以上だと購入できない' do
         @item_order.phone = '123456789123'
         @item_order.valid?
@@ -80,6 +98,8 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Token can't be blank")
       end
+
+
 
     end
   end
