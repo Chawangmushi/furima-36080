@@ -75,6 +75,12 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Phone is too long (maximum is 11 characters)")
       end
 
+      it 'クレジットカード情報が記入されていないと購入できない' do
+        @item_order.token = ''
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Token can't be blank")
+      end
+
     end
   end
 end
