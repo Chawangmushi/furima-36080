@@ -1,9 +1,9 @@
 require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   before do
-    @item = 1
-    @user = 1
-    @item_order = FactoryBot.build(:item_order, item_id: @item, user_id: @user)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.build(:item, user_id: user.id)
+    @item_order = FactoryBot.build(:item_order, item_id: item, user_id: user)
   end
 
   describe '購入のテスト' do
