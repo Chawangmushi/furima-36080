@@ -1,10 +1,12 @@
 require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   before do
-    @item_order = FactoryBot.build(:item_order)
-    # @item = FactoryBot.create(:item)
-    # @user = FactoryBot.create(:user)
-    #sleep(1)
+    #@item = FactoryBot.create(:item)
+    #@user = FactoryBot.create(:user)
+    @item = 1
+    @user = 1
+    @item_order = FactoryBot.build(:item_order, item_id: @item, user_id: @user)
+
   end
 
   describe '購入のテスト' do
@@ -21,6 +23,13 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     context '購入ができない場合のテスト' do
+
+      it 'item_id が空だと登録できない' do
+        @item_order.item_id = ""
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Item can't be blank")
+      end
+
       it '郵便番号が空白だと購入できない' do
         @item_order.postalcode = ''
         @item_order.valid?
@@ -99,6 +108,17 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Token can't be blank")
       end
 
+      it 'item_id が空だと登録できない' do
+        @item_order.item_id = ""
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'user_id が空だと登録できない' do
+        @item_order.user_id = ""
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("User can't be blank")
+      end
 
 
     end
