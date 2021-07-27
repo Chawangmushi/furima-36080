@@ -4,7 +4,7 @@ RSpec.describe Shipping, type: :model do
     @shipping = FactoryBot.build(:shipping)
     # @item = FactoryBot.create(:item)
     # @user = FactoryBot.create(:user)
-    #sleep(1)
+    # sleep(1)
   end
 
   describe '購入のテスト' do
@@ -24,13 +24,13 @@ RSpec.describe Shipping, type: :model do
       it '郵便番号が半角数字とハイフン以外だと購入できない' do
         @shipping.postalcode = '１２３−４５６'
         @shipping.valid?
-        expect(@shipping.errors.full_messages).to include("postalcode is invalid")
+        expect(@shipping.errors.full_messages).to include('postalcode is invalid')
       end
 
       it '郵便番号が3桁-4桁の形以外だと購入できない' do
         @shipping.postalcode = '1234-567'
         @shipping.valid?
-        expect(@shipping.errors.full_messages).to include("postalcode is invalid")
+        expect(@shipping.errors.full_messages).to include('postalcode is invalid')
       end
     end
   end

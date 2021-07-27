@@ -6,6 +6,6 @@ FactoryBot.define do
     banchi { '日本橋' }
     building_name { 'トルナーレ浜町' }
     phone { '09012345678' }
-    token {"tok_abcdefghijk00000000000000000"}
+    token { 'tok_abcdefghijk00000000000000000' }
   end
 end
