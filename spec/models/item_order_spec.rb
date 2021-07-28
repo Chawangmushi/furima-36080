@@ -2,11 +2,8 @@ require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   before do
     user = FactoryBot.create(:user)
-    binding.pry
     item = FactoryBot.create(:item)
-    binding.pry
     @item_order = FactoryBot.build(:item_order, item_id: item.id, user_id: user.id)
-    binding.pry
     sleep(1)
   end
 
