@@ -1,9 +1,10 @@
 require 'rails_helper'
 RSpec.describe ItemOrder, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    item = FactoryBot.build(:item, user_id: user.id)
-    @item_order = FactoryBot.build(:item_order, item_id: item, user_id: user)
+    user = FactoryBot.create(:user, )
+    item = FactoryBot.create(:item, user_id: user.id)
+    @item_order = FactoryBot.build(:item_order, item_id: item.id, user_id: user.id)
+    sleep(1)
   end
 
   describe '購入のテスト' do
@@ -19,12 +20,6 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     context '購入ができない場合のテスト' do
-      it 'item_id が空だと登録できない' do
-        @item_order.item_id = ''
-        @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Item can't be blank")
-      end
-
       it '郵便番号が空白だと購入できない' do
         @item_order.postalcode = ''
         @item_order.valid?
@@ -39,6 +34,12 @@ RSpec.describe ItemOrder, type: :model do
 
       it '郵便番号が3桁-4桁の形以外だと購入できない' do
         @item_order.postalcode = '1234-567'
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include('Postalcode is invalid')
+      end
+
+      it '郵便番号がハイフン無しだと購入できない' do
+        @item_order.postalcode = '1234567'
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include('Postalcode is invalid')
       end
@@ -104,13 +105,13 @@ RSpec.describe ItemOrder, type: :model do
       end
 
       it 'item_id が空だと登録できない' do
-        @item_order.item_id = ''
+        @item_order.item_id = nil
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Item can't be blank")
       end
 
       it 'user_id が空だと登録できない' do
-        @item_order.user_id = ''
+        @item_order.user_id = nil
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("User can't be blank")
       end
