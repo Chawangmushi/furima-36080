@@ -1,13 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :check_item_status, only: [:index, :create]
 
   def index
-    if current_user.id != @item.user_id && @item.order.nil?
-      @item_order = ItemOrder.new
-    else
-      redirect_to root_path
-    end
+    @item_order = ItemOrder.new
   end
 
   def create
@@ -41,5 +38,11 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def check_item_status
+    if current_user.id == @item.user_id || @item.order.present?
+      redirect_to root_path
+    end
   end
 end
