@@ -21,16 +21,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
   end
 
   def update
-
     if @item.update(item_params)
-        redirect_to item_path
+      redirect_to item_path
     else
       render :edit
     end
@@ -40,7 +38,6 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
-
 
   private
 
@@ -54,7 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def user_check
-    redirect_to action: :index if @item.user_id != current_user.id
+    redirect_to action: :index if @item.user_id != current_user.id || @item.order.present?
   end
-
 end
