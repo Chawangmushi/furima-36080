@@ -205,3 +205,20 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comment-date {
+  color: #999;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.comment-detail {
+  color: rgb(75, 81, 86);
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.comment-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
