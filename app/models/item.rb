@@ -15,11 +15,11 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :price,         inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
-                              numericality: { only_integer: true, message: 'is invalid. Please input half-width numbers only' }
+    validates :price,         inclusion: { in: 300..9_999_999, message: 'は300〜9,999,999の間で入力してください' },
+                              numericality: { only_integer: true, message: '半角数字のみ入力可能です' }
   end
 
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: "を選択してください" } do
     validates :category_id
     validates :condition_id
     validates :shipping_payment_id

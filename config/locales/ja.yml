@@ -2,3 +2,23 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        surname: 苗字
+        givenname: 名前
+        surname_furigana: フリガナ（苗字）
+        givenname_furigana: フリガナ（名前）
+        birthday: 生年月日
+      item:
+        image: 画像
+        name: 商品名
+        description: 商品の説明
+        price: 販売価格
+        category_id: カテゴリー
+        condition_id: 商品の状態
+        shipping_payment_id: 販配送料の負担
+        shipping_from_id: 発送元の地域
+        shipping_day_id: 発送までの日数
