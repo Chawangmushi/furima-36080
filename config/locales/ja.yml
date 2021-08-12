@@ -22,3 +22,4 @@ ja:
         shipping_payment_id: 販配送料の負担
         shipping_from_id: 発送元の地域
         shipping_day_id: 発送までの日数
+        user: ユーザー
