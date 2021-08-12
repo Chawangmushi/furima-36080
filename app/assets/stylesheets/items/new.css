@@ -227,3 +227,13 @@
 .inc {
   font-size: 13px;
 }
+
+.preview {
+  width: auto;
+  height: auto;
+
+}
+
+img{
+  max-width:100%;
+}
