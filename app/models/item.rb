@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :order
-  has_many_attached :images
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   with_options presence: true do
-    validates :images
+    validates :image
     validates :name
     validates :description
     validates :price,         inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
