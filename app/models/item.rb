@@ -19,7 +19,7 @@ class Item < ApplicationRecord
                               numericality: { only_integer: true, message: '半角数字のみ入力可能です' }
   end
 
-  with_options numericality: { other_than: 1, message: "を選択してください" } do
+  with_options numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :condition_id
     validates :shipping_payment_id
